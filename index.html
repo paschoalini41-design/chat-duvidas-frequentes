@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -51,7 +50,48 @@
     </div>
 
     <script>
-        let faq = {"TI": [["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"], ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"], ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"], ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.<br>Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='imagens/vpn_pass1.png' width='300'>\n\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='imagens/vpn_pass2.png' width='300'>\n\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='imagens/vpn_pass3.png' width='300'>\n\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>\n            <img src='imagens/mapear_rede.png' width='350'>\n        "], ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"], ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"], ["Quanto tempo demora para um chamado ser atendido?", "<p>O prazo depende da <b>complexidade do chamado</b> aberto.</p>"], ["Como se conectar no Wi-Fi corporativo e visitantes?", "\n            <p><b>Wi-Fi Corporativo</b>: conecta automaticamente conforme o andar. <br>\n            ⚠️ Sempre conecte no Wi-Fi antes de logar na máquina para mapear as redes automaticamente.</p>\n\n            <p><b>Wi-Fi Visitantes</b>: cada empresa tem seu nome e senha, disponíveis nos murais de cada andar.</p>\n        "], ["Como utilizar o ClickShare nas salas de reunião?", "\n            <p>O <b>ClickShare</b> é utilizado para espelhamento de notebook, áudio, microfone e câmera.</p>\n            <ul>\n                <li>Colaboradores internos: basta plugar e conectar (driver já instalado).</li>\n                <li>Visitantes: solicitar ao TI a instalação do driver (Windows ou Mac).</li>\n            </ul>\n            <p>No <b>Microsoft Teams</b>, verifique se o microfone e câmera estão definidos como <i>ClickShare (Speak Room)</i>.</p>\n        "]]};
+        let faq = {
+            "TI": [
+                ["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"],
+                ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"],
+                ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"],
+                ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.<br>Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"],
+                ["Como acessar a VPN de casa?", `
+                    <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>
+                    <img src='vpn_pass1.png' width='300'>
+
+                    <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>
+                    <img src='vpn_pass2.png' width='300'>
+
+                    <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>
+                    <img src='vpn_pass3.png' width='300'>
+
+                    <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>
+                `],
+                ["As redes não mapearam sozinhas, como faço?", `
+                    <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>
+                    <img src='mapear_rede.png' width='350'>
+                `],
+                ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"],
+                ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"],
+                ["Quanto tempo demora para um chamado ser atendido?", "<p>O prazo depende da <b>complexidade do chamado</b> aberto.</p>"],
+                ["Como se conectar no Wi-Fi corporativo e visitantes?", `
+                    <p><b>Wi-Fi Corporativo</b>: conecta automaticamente conforme o andar. <br>
+                    ⚠️ Sempre conecte no Wi-Fi antes de logar na máquina para mapear as redes automaticamente.</p>
+
+                    <p><b>Wi-Fi Visitantes</b>: cada empresa tem seu nome e senha, disponíveis nos murais de cada andar.</p>
+                `],
+                ["Como utilizar o ClickShare nas salas de reunião?", `
+                    <p>O <b>ClickShare</b> é utilizado para espelhamento de notebook, áudio, microfone e câmera.</p>
+                    <ul>
+                        <li>Colaboradores internos: basta plugar e conectar (driver já instalado).</li>
+                        <li>Visitantes: solicitar ao TI a instalação do driver (Windows ou Mac).</li>
+                    </ul>
+                    <p>No <b>Microsoft Teams</b>, verifique se o microfone e câmera estão definidos como <i>ClickShare (Speak Room)</i>.</p>
+                `]
+            ]
+        };
+
         let currentArea = null;
         let areasDiv = document.getElementById("areas");
         let perguntasDiv = document.getElementById("perguntas");
@@ -97,3 +137,4 @@
     </script>
 </body>
 </html>
+
