@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dúvidas Frequentes - iBenx</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #222; color: white; margin: 0; }
+        .main-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .hero-title { font-size: 36px; text-align: center; margin-bottom: 10px; }
+        .hero-subtitle { text-align: center; color: #ccc; margin-bottom: 40px; }
+        .chat-container { display: grid; grid-template-columns: 250px 300px 1fr; gap: 20px; }
+        .areas-panel, .questions-panel, .chat-panel { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; }
+        .panel-title { text-align: center; font-weight: bold; margin-bottom: 10px; }
+        .area-btn, .question-btn { width: 100%; margin-bottom: 10px; padding: 10px; border: none; border-radius: 8px; cursor: pointer; }
+        .area-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .area-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .question-btn { background: rgba(255,255,255,0.1); color: white; text-align: left; }
+        .question-btn:hover { background: rgba(255,255,255,0.2); }
+        .chat-messages { height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 10px; font-size: 14px; }
+        .user { align-self: flex-end; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .bot { align-self: flex-start; background: rgba(255,255,255,0.9); color: #000; }
+        img { margin-top: 10px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="hero-title">CENTRAL DE DÚVIDAS</h1>
+        <p class="hero-subtitle">Área de TI - Respostas rápidas para suas perguntas</p>
+
+        <div class="chat-container">
+            <div class="areas-panel">
+                <h3 class="panel-title">Áreas</h3>
+                <div id="areas"></div>
+            </div>
+
+            <div class="questions-panel">
+                <h3 class="panel-title">Perguntas</h3>
+                <div id="perguntas"><p style='color:#ccc'>Selecione uma área para ver as perguntas.</p></div>
+            </div>
+
+            <div class="chat-panel">
+                <h3 class="panel-title">💬 Chat de Atendimento</h3>
+                <div class="chat-messages" id="chat">
+                    <p style='color:#999; text-align:center'>Olá! Selecione uma área e uma pergunta para começar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let faq = {"TI": [["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"], ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"], ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"], ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.<br>Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='imagens/vpn_pass1.png' width='300'>\n\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='imagens/vpn_pass2.png' width='300'>\n\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='imagens/vpn_pass3.png' width='300'>\n\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>\n            <img src='imagens/mapear_rede.png' width='350'>\n        "], ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"], ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"], ["Quanto tempo demora para um chamado ser atendido?", "<p>O prazo depende da <b>complexidade do chamado</b> aberto.</p>"], ["Como se conectar no Wi-Fi corporativo e visitantes?", "\n            <p><b>Wi-Fi Corporativo</b>: conecta automaticamente conforme o andar. <br>\n            ⚠️ Sempre conecte no Wi-Fi antes de logar na máquina para mapear as redes automaticamente.</p>\n\n            <p><b>Wi-Fi Visitantes</b>: cada empresa tem seu nome e senha, disponíveis nos murais de cada andar.</p>\n        "], ["Como utilizar o ClickShare nas salas de reunião?", "\n            <p>O <b>ClickShare</b> é utilizado para espelhamento de notebook, áudio, microfone e câmera.</p>\n            <ul>\n                <li>Colaboradores internos: basta plugar e conectar (driver já instalado).</li>\n                <li>Visitantes: solicitar ao TI a instalação do driver (Windows ou Mac).</li>\n            </ul>\n            <p>No <b>Microsoft Teams</b>, verifique se o microfone e câmera estão definidos como <i>ClickShare (Speak Room)</i>.</p>\n        "]]};
+        let currentArea = null;
+        let areasDiv = document.getElementById("areas");
+        let perguntasDiv = document.getElementById("perguntas");
+
+        // Botões das áreas
+        for (let area in faq) {
+            let btn = document.createElement("button");
+            btn.className = "area-btn";
+            btn.innerText = area;
+            btn.onclick = function() {
+                document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentArea = area;
+                perguntasDiv.innerHTML = "";
+                faq[area].forEach(function(qr) {
+                    let pbtn = document.createElement("button");
+                    pbtn.className = "question-btn";
+                    pbtn.innerText = qr[0];
+                    pbtn.onclick = function() { addMessage(qr[0], qr[1]); };
+                    perguntasDiv.appendChild(pbtn);
+                });
+            };
+            areasDiv.appendChild(btn);
+        }
+
+        function addMessage(pergunta, resposta) {
+            let chat = document.getElementById("chat");
+            if (chat.querySelector('p')) chat.innerHTML = '';
+
+            let userMsg = document.createElement("div");
+            userMsg.className = "message user";
+            userMsg.innerText = pergunta;
+            chat.appendChild(userMsg);
+
+            setTimeout(function() {
+                let botMsg = document.createElement("div");
+                botMsg.className = "message bot";
+                botMsg.innerHTML = resposta; // suporta HTML
+                chat.appendChild(botMsg);
+                chat.scrollTop = chat.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
