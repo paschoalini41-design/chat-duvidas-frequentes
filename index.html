@@ -2,77 +2,54 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>FAQ Suporte</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dúvidas Frequentes - iBenx</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        .faq {
-            margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            background: #fff;
-        }
-        .faq h2 {
-            font-size: 18px;
-            color: #444;
-            cursor: pointer;
-        }
-        .faq-content {
-            display: none;
-            margin-top: 10px;
-        }
-        img {
-            max-width: 600px;
-            margin-top: 10px;
-            border-radius: 6px;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #222; color: white; margin: 0; }
+        .main-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .hero-title { font-size: 36px; text-align: center; margin-bottom: 10px; }
+        .hero-subtitle { text-align: center; color: #ccc; margin-bottom: 40px; }
+        .chat-container { display: grid; grid-template-columns: 250px 300px 1fr; gap: 20px; }
+        .areas-panel, .questions-panel, .chat-panel { background: rgba(255,255,255,0.1 ); border-radius: 10px; padding: 20px; }
+        .panel-title { text-align: center; font-weight: bold; margin-bottom: 10px; }
+        .area-btn, .question-btn { width: 100%; margin-bottom: 10px; padding: 10px; border: none; border-radius: 8px; cursor: pointer; }
+        .area-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .area-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .question-btn { background: rgba(255,255,255,0.1); color: white; text-align: left; }
+        .question-btn:hover { background: rgba(255,255,255,0.2); }
+        .chat-messages { height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .message { max-width: 80%; padding: 10px 15px; border-radius: 10px; font-size: 14px; }
+        .user { align-self: flex-end; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .bot { align-self: flex-start; background: rgba(255,255,255,0.9); color: #000; }
+        img { margin-top: 10px; border-radius: 8px; max-width: 100%; } /* Adicionado max-width para responsividade */
     </style>
-    <script>
-        function toggleFAQ(id) {
-            const content = document.getElementById(id);
-            content.style.display = content.style.display === "block" ? "none" : "block";
-        }
-    </script>
 </head>
 <body>
-    <h1>FAQ - Suporte</h1>
+    <div class="main-container">
+        <h1 class="hero-title">CENTRAL DE DÚVIDAS</h1>
+        <p class="hero-subtitle">Escolha a área e visualize as respostas rápidas</p>
 
-    <div class="faq">
-        <h2 onclick="toggleFAQ('faq1')">Como mapear a rede?</h2>
-        <div class="faq-content" id="faq1">
-            <p>Siga as instruções abaixo para mapear a rede:</p>
-            <img src="principal/mapear_rede.png" alt="Passo a passo para mapear a rede">
+        <div class="chat-container">
+            <div class="areas-panel">
+                <h3 class="panel-title">Áreas</h3>
+                <div id="areas"></div>
+            </div>
+
+            <div class="questions-panel">
+                <h3 class="panel-title">Perguntas</h3>
+                <div id="perguntas"><p style='color:#ccc'>Selecione uma área para ver as perguntas.</p></div>
+            </div>
+
+            <div class="chat-panel">
+                <h3 class="panel-title">💬 Chat de Atendimento</h3>
+                <div class="chat-messages" id="chat">
+                    <p style='color:#999; text-align:center'>Olá! Selecione uma área e uma pergunta para começar.</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="faq">
-        <h2 onclick="toggleFAQ('faq2')">Como acessar contas a receber no SAP?</h2>
-        <div class="faq-content" id="faq2">
-            <p>Para acessar as contas a receber no SAP, siga este guia:</p>
-            <img src="principal/sap_contas_receber.png" alt="SAP contas a receber">
-        </div>
-    </div>
-
-    <div class="faq">
-        <h2 onclick="toggleFAQ('faq3')">Como configurar a VPN?</h2>
-        <div class="faq-content" id="faq3">
-            <p>Siga os passos abaixo para configurar sua VPN:</p>
-            <img src="principal/vpn_pass1.png" alt="VPN passo 1">
-            <img src="principal/vpn_pass2.png" alt="VPN passo 2">
-            <img src="principal/vpn_pass3.png" alt="VPN passo 3">
-        </div>
-    </div>
-</body>
-</html>
-
-
-
-
+    <script>
+        let faq = {"TI": [["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"], ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"], ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"], ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.  
+Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='vpn_pass1.png' width='300'>\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='vpn_pass2.png' width='300'>\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='vpn_pass3.png' width='300'>\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>\n            <img src='mapear_rede.png' width='350'>\n        "], ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"], ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"], ["Quanto tempo demora para
