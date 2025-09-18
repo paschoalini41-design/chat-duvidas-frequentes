@@ -2,99 +2,73 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dúvidas Frequentes - iBenx</title>
+    <title>FAQ Suporte</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #222; color: white; margin: 0; }
-        .main-container { padding: 20px; max-width: 1200px; margin: auto; }
-        .hero-title { font-size: 36px; text-align: center; margin-bottom: 10px; }
-        .hero-subtitle { text-align: center; color: #ccc; margin-bottom: 40px; }
-        .chat-container { display: grid; grid-template-columns: 250px 300px 1fr; gap: 20px; }
-        .areas-panel, .questions-panel, .chat-panel { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; }
-        .panel-title { text-align: center; font-weight: bold; margin-bottom: 10px; }
-        .area-btn, .question-btn { width: 100%; margin-bottom: 10px; padding: 10px; border: none; border-radius: 8px; cursor: pointer; }
-        .area-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-        .area-btn.active { background: linear-gradient(135deg, #f093fb, #f5576c); }
-        .question-btn { background: rgba(255,255,255,0.1); color: white; text-align: left; }
-        .question-btn:hover { background: rgba(255,255,255,0.2); }
-        .chat-messages { height: 500px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-        .message { max-width: 80%; padding: 10px 15px; border-radius: 10px; font-size: 14px; }
-        .user { align-self: flex-end; background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
-        .bot { align-self: flex-start; background: rgba(255,255,255,0.9); color: #000; }
-        img { margin-top: 10px; border-radius: 8px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .faq {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .faq h2 {
+            font-size: 18px;
+            color: #444;
+            cursor: pointer;
+        }
+        .faq-content {
+            display: none;
+            margin-top: 10px;
+        }
+        img {
+            max-width: 600px;
+            margin-top: 10px;
+            border-radius: 6px;
+        }
     </style>
+    <script>
+        function toggleFAQ(id) {
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === "block" ? "none" : "block";
+        }
+    </script>
 </head>
 <body>
-    <div class="main-container">
-        <h1 class="hero-title">CENTRAL DE DÚVIDAS</h1>
-        <p class="hero-subtitle">Escolha a área e visualize as respostas rápidas</p>
+    <h1>FAQ - Suporte</h1>
 
-        <div class="chat-container">
-            <div class="areas-panel">
-                <h3 class="panel-title">Áreas</h3>
-                <div id="areas"></div>
-            </div>
-
-            <div class="questions-panel">
-                <h3 class="panel-title">Perguntas</h3>
-                <div id="perguntas"><p style='color:#ccc'>Selecione uma área para ver as perguntas.</p></div>
-            </div>
-
-            <div class="chat-panel">
-                <h3 class="panel-title">💬 Chat de Atendimento</h3>
-                <div class="chat-messages" id="chat">
-                    <p style='color:#999; text-align:center'>Olá! Selecione uma área e uma pergunta para começar.</p>
-                </div>
-            </div>
+    <div class="faq">
+        <h2 onclick="toggleFAQ('faq1')">Como mapear a rede?</h2>
+        <div class="faq-content" id="faq1">
+            <p>Siga as instruções abaixo para mapear a rede:</p>
+            <img src="mapear_rede.png" alt="Passo a passo para mapear a rede">
         </div>
     </div>
 
-    <script>
-        let faq = {"TI": [["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"], ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"], ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"], ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.<br>Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='imagens/vpn_pass1.png' width='300'>\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='imagens/vpn_pass2.png' width='300'>\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='imagens/vpn_pass3.png' width='300'>\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>\n            <img src='imagens/mapear_rede.png' width='350'>\n        "], ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"], ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"], ["Quanto tempo demora para um chamado ser atendido?", "<p>O prazo depende da <b>complexidade do chamado</b> aberto.</p>"], ["Como se conectar no Wi-Fi corporativo e visitantes?", "\n            <p><b>Wi-Fi Corporativo</b>: conecta automaticamente conforme o andar. <br>\n            ⚠️ Sempre conecte no Wi-Fi antes de logar na máquina para mapear as redes automaticamente.</p>\n            <p><b>Wi-Fi Visitantes</b>: cada empresa tem seu nome e senha, disponíveis nos murais de cada andar.</p>\n        "], ["Como utilizar o ClickShare nas salas de reunião?", "\n            <p>O <b>ClickShare</b> é utilizado para espelhamento de notebook, áudio, microfone e câmera.</p>\n            <ul>\n                <li>Colaboradores internos: basta plugar e conectar (driver já instalado).</li>\n                <li>Visitantes: solicitar ao TI a instalação do driver (Windows ou Mac).</li>\n            </ul>\n            <p>No <b>Microsoft Teams</b>, verifique se o microfone e câmera estão definidos como <i>ClickShare (Speak Room)</i>.</p>\n        "]], "SAP": [["Mensagem de erro ao lançar notas na transação MIRO", "<p>“Item 9999 Operação de Rede 4xxxxxxxxx 00xx orçamento excedido.”<br>Deverão entrar em contato com a equipe de <b>Controle de Planejamento e Custos</b>.</p>"], ["Requisição de Compras – Transações úteis", "\n            <ul>\n                <li>ME51N - Criar requisição de compras</li>\n                <li>ME52N - Modificar requisição de compra</li>\n                <li>ME53N - Exibir requisição de compra</li>\n                <li>ME54N - Liberar requisição de compra</li>\n                <li>ME5J - Requisições de compra para projeto</li>\n                <li>ME5K - Requisições de compra para Classificações Contábeis</li>\n                <li>ME5A - Exibir lista de requisições de compra</li>\n            </ul>\n        "], ["Pedido de compra - Transações úteis", "\n            <ul>\n                <li>ME21N - Criar pedido</li>\n                <li>ME22N - Modificar pedido</li>\n                <li>ME23N - Exibir pedido</li>\n                <li>ME29N - Liberar pedido</li>\n                <li>ME28 - Liberar pedido</li>\n                <li>EXPD - Relatório de Pedidos Pendentes</li>\n                <li>ME2M - Relatório de Pedidos por número de material</li>\n                <li>ME2N - Relatório de Pedidos por número de pedido</li>\n                <li>ME2L - Relatório de Pedidos por número do fornecedor</li>\n                <li>ME2C - Relatório de Pedidos por grupo de mercadorias</li>\n                <li>ME2J - Relatório de Pedidos por número do Projeto</li>\n                <li>ME2K - Relatório de Pedidos por Classificação Contábil</li>\n                <li>ME2W - Relatório de Pedidos por Centro Fornecedor</li>\n                <li>ME2B - Relatório de Pedidos por número de acompanhamento</li>\n                <li>ME1P - Histórico de preço do pedido</li>\n                <li>ZMM0010 - Relatório de Pedidos – Estrategia a liberar</li>\n                <li>ZPEDIDO - Relatório de Pedidos de Compras</li>\n                <li>ZFORPAR - Relatório de parceiros de fornecedores</li>\n                <li>ZFORNEC - Relatório de fornecedores</li>\n                <li>ZMIRO - Relatório de Pedidos e Faturas atreladas</li>\n            </ul>\n        "], ["Nota fiscal e Pagamento e Recebimento – Transações úteis", "\n            <ul>\n                <li>FBL1N - Partidas individuais para fornecedores</li>\n                <li>FBL3N - Partidas individuais contas do Razão</li>\n                <li>J1B3N - Exibir nota fiscal</li>\n                <li>FBL5N - Partidas individuais para clientes</li>\n            </ul>\n        "], ["Entrada de Nota Fiscal de Fornecedor – Erro na transação MIRO – Período Contábeis", "<p>Solicitar para o departamento <b>Fiscal</b> ou <b>Contábil</b> deferir o período para poder darem entrada na Nota Fiscal através da transação MIRO.</p>"], ["Pedido de compras - Erro Status de sistema ABER", "<p>Na criação de pedido de compras, se aparecer a mensagem de erro:<br><b>“Status de sistema ABER está ativo (TDR 4XXXXXXXXX 0000)”</b><br>Quer dizer que o diagrama de rede não está liberado para compras.<br>Deverá entrar em contato com a equipe de <b>Planejamento e Custos</b> e solicitar a liberação.</p>"], ["Contas a receber – Divergência no código de barras do boleto de clientes", "\n            <p>Deverá verificar na transação <b>FBZP</b> – na aba Banco empresas, posicionando na empresa que está ocorrendo o problema.<br>\n            Marque a empresa e dê duplo clique em Contas bancárias.<br>\n            Irá aparecer a tela para colocar o banco empresa. Se não souber abra o match code para escolher.<br>\n            Aparecerá que o mandante não é modificável, basta dar avançar.<br>\n            Verifique se há um espaço em branco à esquerda da chave de controle de banco (se houver peça para remover pois este é o erro de parametrização).</p>\n            <img src='imagens/sap_contas_receber.png' width='600'>\n        "], ["Faturamento de Clientes – Problema ao gerar documento de faturamento (estorno)", "\n            <p>Mensagem de erro – Não foram gerados documentos de faturamento (msg VF032).<br>\n            Inserimos o documento na transação <b>VF03</b> e selecionamos a opção “Exibir fluxo de documentos”.<br>\n            Ao abrir o fluxo de documentos, identificamos o nº de Estorno fatura, que iremos utilizar na transação <b>VF02</b>.<br>\n            Para finalizarmos o processo de estorno, será necessário acessar a transação VF02, inserir o nº do documento estorno obtido na VF03 e selecionar o ícone “liberar contabilidade” (bandeira verde).</p>\n        "], ["Transações úteis SAP", "\n            <ul>\n                <li>MM03 – Exibir Mestre de Materiais</li>\n                <li>XK03 – Exibir Mestre de Fornecedor</li>\n                <li>VA01 – Criar ordem de cliente</li>\n                <li>VA03 – Exibir ordem cliente</li>\n                <li>VF01 – Criar documento de faturamento</li>\n                <li>VF02 – Alterar documento de faturamento</li>\n                <li>VF03 – Exibir documento de faturamento</li>\n                <li>VF05 – Lista documentos de faturamento</li>\n                <li>VF11 – Estornar documento de faturamento</li>\n                <li>FBRA – Estorno de partidas compensadas</li>\n                <li>FB08 – Estornar documento</li>\n            </ul>\n        "], ["Criação/modificação de Fornecedor ou Material no SAP", "<p>Deverá entrar em contato com a equipe de <b>Suprimentos</b>.</p>"]]};
-        let currentArea = null;
-        let areasDiv = document.getElementById("areas");
-        let perguntasDiv = document.getElementById("perguntas");
+    <div class="faq">
+        <h2 onclick="toggleFAQ('faq2')">Como acessar contas a receber no SAP?</h2>
+        <div class="faq-content" id="faq2">
+            <p>Para acessar as contas a receber no SAP, siga este guia:</p>
+            <img src="sap_contas_receber.png" alt="SAP contas a receber">
+        </div>
+    </div>
 
-        // Botões das áreas
-        for (let area in faq) {
-            let btn = document.createElement("button");
-            btn.className = "area-btn";
-            btn.innerText = area;
-            btn.onclick = function() {
-                document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentArea = area;
-                perguntasDiv.innerHTML = "";
-                faq[area].forEach(function(qr) {
-                    let pbtn = document.createElement("button");
-                    pbtn.className = "question-btn";
-                    pbtn.innerText = qr[0];
-                    pbtn.onclick = function() { addMessage(qr[0], qr[1]); };
-                    perguntasDiv.appendChild(pbtn);
-                });
-            };
-            areasDiv.appendChild(btn);
-        }
-
-        function addMessage(pergunta, resposta) {
-            let chat = document.getElementById("chat");
-            if (chat.querySelector('p')) chat.innerHTML = '';
-
-            let userMsg = document.createElement("div");
-            userMsg.className = "message user";
-            userMsg.innerText = pergunta;
-            chat.appendChild(userMsg);
-
-            setTimeout(function() {
-                let botMsg = document.createElement("div");
-                botMsg.className = "message bot";
-                botMsg.innerHTML = resposta; // suporta HTML
-                chat.appendChild(botMsg);
-                chat.scrollTop = chat.scrollHeight;
-            }, 500);
-        }
-    </script>
+    <div class="faq">
+        <h2 onclick="toggleFAQ('faq3')">Como configurar a VPN?</h2>
+        <div class="faq-content" id="faq3">
+            <p>Siga os passos abaixo para configurar sua VPN:</p>
+            <img src="vpn_pass1.png" alt="VPN passo 1">
+            <img src="vpn_pass2.png" alt="VPN passo 2">
+            <img src="vpn_pass3.png" alt="VPN passo 3">
+        </div>
+    </div>
 </body>
 </html>
-
