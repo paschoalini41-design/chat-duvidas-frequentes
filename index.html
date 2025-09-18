@@ -9,8 +9,8 @@
         /* --- Estilos Gerais --- */
         body {
             font-family: 'Segoe UI', sans-serif;
-            background-color: #333; /* Fundo um pouco mais claro que preto */
-            color: #E0E0E0; /* Cor de texto principal (cinza claro ) */
+            background-color: #333;
+            color: #E0E0E0;
             margin: 0;
             padding: 20px;
         }
@@ -31,7 +31,7 @@
 
         .hero-subtitle {
             text-align: center;
-            color: #B0B0B0; /* Cinza mais suave */
+            color: #B0B0B0;
             margin-bottom: 40px;
             font-size: 16px;
         }
@@ -39,13 +39,12 @@
         /* --- Layout dos Painéis --- */
         .chat-container {
             display: grid;
-            /* Colunas ajustadas para corresponder à imagem */
             grid-template-columns: 200px 1fr 1.5fr;
             gap: 20px;
         }
 
         .areas-panel, .questions-panel, .chat-panel {
-            background-color: #424242; /* Cor de fundo dos painéis */
+            background-color: #424242;
             border-radius: 8px;
             padding: 20px;
         }
@@ -56,7 +55,7 @@
             color: #FFF;
             margin-top: 0;
             margin-bottom: 20px;
-            text-align: left; /* Alinhado à esquerda como na imagem */
+            text-align: left;
         }
 
         /* --- Botões --- */
@@ -64,27 +63,26 @@
             width: 100%;
             margin-bottom: 10px;
             padding: 12px 15px;
-            border: 1px solid #555; /* Borda sutil */
+            border: 1px solid #555;
             border-radius: 5px;
             cursor: pointer;
             text-align: left;
             font-size: 14px;
-            background-color: #505050; /* Fundo padrão dos botões */
+            background-color: #505050;
             color: #E0E0E0;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, border-color 0.2s;
         }
 
         .question-btn:hover {
-            background-color: #606060; /* Efeito hover */
+            background-color: #606060;
         }
 
         /* Cores específicas para os botões de área */
-        .area-btn[data-area="TI"] { background-color: #8A2BE2; color: white; border: none; }
-        .area-btn[data-area="SAP"] { background-color: #FF69B4; color: white; border: none; }
+        .area-btn[data-area="TI"] { background: linear-gradient(135deg, #667eea, #764ba2 ); border: none; color: white; }
+        .area-btn[data-area="SAP"] { background: linear-gradient(135deg, #f093fb, #f5576c); border: none; color: white; }
 
-        /* Estilo do botão de área ativo (quando clicado) */
         .area-btn.active {
-            border: 2px solid #FFF; /* Borda branca para destacar */
+            border: 2px solid #FFF;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
@@ -102,7 +100,6 @@
             gap: 15px;
         }
         
-        /* Mensagens de placeholder */
         .placeholder-text {
             color: #999;
             text-align: center;
@@ -119,21 +116,21 @@
 
         .user {
             align-self: flex-end;
-            background-color: #764BA2; /* Roxo para a mensagem do usuário */
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
 
         .bot {
             align-self: flex-start;
-            background-color: #FFF; /* Fundo branco para a resposta do bot */
-            color: #333; /* Texto escuro */
+            background-color: #FFF;
+            color: #333;
             border: 1px solid #DDD;
         }
 
         .bot img {
             margin-top: 10px;
             border-radius: 8px;
-            max-width: 100%; /* Garante que a imagem não quebre o layout */
+            max-width: 100%;
             display: block;
         }
     </style>
@@ -157,7 +154,6 @@
             </div>
 
             <div class="chat-panel">
-                <!-- Título com ícone -->
                 <h3 class="panel-title">
                     <span style="margin-right: 8px;">💬</span> Chat de Atendimento
                 </h3>
@@ -169,8 +165,74 @@
     </div>
 
     <script>
-        // O JavaScript permanece o mesmo, mas com uma pequena adição
         let faq = {"TI": [["Qual tamanho do arquivo pode ser enviado por e-mail?", "<p>O limite é de <b>25 MB (Megabytes)</b>.</p>"], ["Padrão de reset de senha?", "<p>A senha deve ter no mínimo <b>7 caracteres</b>, contendo: letra, número e caractere especial.</p>"], ["A senha expira de quanto em quanto tempo?", "<p>A senha expira a cada <b>60 dias</b>.</p>"], ["Como é feito o processo de desbloqueio de senha?", "<p>Se estiver no escritório: pressione <b>CTRL + ALT + DEL</b> e selecione a opção <i>Alterar senha</i>.  
-Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='vpn_pass1.png' width='300'>\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='vpn_pass2.png' width='300'>\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='vpn_pass3.png' width='300'>\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de 
+Se estiver em home office: contate o TI e mantenha a mesma senha já utilizada para não perder o acesso externo.</p>"], ["Como acessar a VPN de casa?", "\n            <p><b>1º PASSO</b> - Clique no ícone da <b>CISCO</b>:</p>\n            <img src='vpn_pass1.png' width='300'>\n            <p><b>2º PASSO</b> – Clique em <b>Connect</b> na janela que abrir:</p>\n            <img src='vpn_pass2.png' width='300'>\n            <p><b>3º PASSO</b> – Clique em <b>Connect Anyway</b>:</p>\n            <img src='vpn_pass3.png' width='300'>\n            <p><b>4º PASSO</b> – Informe sua senha (a mesma da máquina/e-mail).</p>\n        "], ["As redes não mapearam sozinhas, como faço?", "\n            <p>Execute o <b>Script de mapeamento de unidades de rede</b> que fica na área de trabalho do notebook:</p>\n            <img src='mapear_rede.png' width='350'>\n        "], ["Processo para liberar acessos de pastas na rede e SharePoint", "<p>Solicite via <b>e-mail</b> para o Gestor ou dono do SharePoint. Aguarde a liberação no caso de pastas de rede ou o link de acesso, se for SharePoint.</p>"], ["Como é feito a abertura de chamado?", "<p>Envie um e-mail para: <b>servicedesk-bn@atos.net</b>.</p>"], ["Quanto tempo demora para um chamado ser atendido?", "<p>O prazo depende da <b>complexidade do chamado</b> aberto.</p>"], ["Como se conectar no Wi-Fi corporativo e visitantes?", "\n            <p><b>Wi-Fi Corporativo</b>: conecta automaticamente conforme o andar.   
+\n            ⚠️ Sempre conecte no Wi-Fi antes de logar na máquina para mapear as redes automaticamente.</p>\n            <p><b>Wi-Fi Visitantes</b>: cada empresa tem seu nome e senha, disponíveis nos murais de cada andar.</p>\n        "], ["Como utilizar o ClickShare nas salas de reunião?", "\n            <p>O <b>ClickShare</b> é utilizado para espelhamento de notebook, áudio, microfone e câmera.</p>\n            <ul>\n                <li>Colaboradores internos: basta plugar e conectar (driver já instalado).</li>\n                <li>Visitantes: solicitar ao TI a instalação do driver (Windows ou Mac).</li>\n            </ul>\n            <p>No <b>Microsoft Teams</b>, verifique se o microfone e câmera estão definidos como <i>ClickShare (Speak Room)</i>.</p>\n        "]], "SAP": [["Mensagem de erro ao lançar notas na transação MIRO", "<p>“Item 9999 Operação de Rede 4xxxxxxxxx 00xx orçamento excedido.”  
+Deverão entrar em contato com a equipe de <b>Controle de Planejamento e Custos</b>.</p>"], ["Requisição de Compras – Transações úteis", "\n            <ul>\n                <li>ME51N - Criar requisição de compras</li>\n                <li>ME52N - Modificar requisição de compra</li>\n                <li>ME53N - Exibir requisição de compra</li>\n                <li>ME54N - Liberar requisição de compra</li>\n                <li>ME5J - Requisições de compra para projeto</li>\n                <li>ME5K - Requisições de compra para Classificações Contábeis</li>\n                <li>ME5A - Exibir lista de requisições de compra</li>\n            </ul>\n        "], ["Pedido de compra - Transações úteis", "\n            <ul>\n                <li>ME21N - Criar pedido</li>\n                <li>ME22N - Modificar pedido</li>\n                <li>ME23N - Exibir pedido</li>\n                <li>ME29N - Liberar pedido</li>\n                <li>ME28 - Liberar pedido</li>\n                <li>EXPD - Relatório de Pedidos Pendentes</li>\n                <li>ME2M - Relatório de Pedidos por número de material</li>\n                <li>ME2N - Relatório de Pedidos por número de pedido</li>\n                <li>ME2L - Relatório de Pedidos por número do fornecedor</li>\n                <li>ME2C - Relatório de Pedidos por grupo de mercadorias</li>\n                <li>ME2J - Relatório de Pedidos por número do Projeto</li>\n                <li>ME2K - Relatório de Pedidos por Classificação Contábil</li>\n                <li>ME2W - Relatório de Pedidos por Centro Fornecedor</li>\n                <li>ME2B - Relatório de Pedidos por número de acompanhamento</li>\n                <li>ME1P - Histórico de preço do pedido</li>\n                <li>ZMM0010 - Relatório de Pedidos – Estrategia a liberar</li>\n                <li>ZPEDIDO - Relatório de Pedidos de Compras</li>\n                <li>ZFORPAR - Relatório de parceiros de fornecedores</li>\n                <li>ZFORNEC - Relatório de fornecedores</li>\n                <li>ZMIRO - Relatório de Pedidos e Faturas atreladas</li>\n            </ul>\n        "], ["Nota fiscal e Pagamento e Recebimento – Transações úteis", "\n            <ul>\n                <li>FBL1N - Partidas individuais para fornecedores</li>\n                <li>FBL3N - Partidas individuais contas do Razão</li>\n                <li>J1B3N - Exibir nota fiscal</li>\n                <li>FBL5N - Partidas individuais para clientes</li>\n            </ul>\n        "], ["Entrada de Nota Fiscal de Fornecedor – Erro na transação MIRO – Período Contábeis", "<p>Solicitar para o departamento <b>Fiscal</b> ou <b>Contábil</b> deferir o período para poder darem entrada na Nota Fiscal através da transação MIRO.</p>"], ["Pedido de compras - Erro Status de sistema ABER", "<p>Na criação de pedido de compras, se aparecer a mensagem de erro:  
+<b>“Status de sistema ABER está ativo (TDR 4XXXXXXXXX 0000)”</b>  
+Quer dizer que o diagrama de rede não está liberado para compras.  
+Deverá entrar em contato com a equipe de <b>Planejamento e Custos</b> e solicitar a liberação.</p>"], ["Contas a receber – Divergência no código de barras do boleto de clientes", "\n            <p>Deverá verificar na transação <b>FBZP</b> – na aba Banco empresas, posicionando na empresa que está ocorrendo o problema.  
+\n            Marque a empresa e dê duplo clique em Contas bancárias.  
+\n            Irá aparecer a tela para colocar o banco empresa. Se não souber abra o match code para escolher.  
+\n            Aparecerá que o mandante não é modificável, basta dar avançar.  
+\n            Verifique se há um espaço em branco à esquerda da chave de controle de banco (se houver peça para remover pois este é o erro de parametrização).</p>\n            <img src='sap_contas_receber.png' width='600'>\n        "], ["Faturamento de Clientes – Problema ao gerar documento de faturamento (estorno)", "\n            <p>Mensagem de erro – Não foram gerados documentos de faturamento (msg VF032).  
+\n            Inserimos o documento na transação <b>VF03</b> e selecionamos a opção “Exibir fluxo de documentos”.  
+\n            Ao abrir o fluxo de documentos, identificamos o nº de Estorno fatura, que iremos utilizar na transação <b>VF02</b>.  
+\n            Para finalizarmos o processo de estorno, será necessário acessar a transação VF02, inserir o nº do documento estorno obtido na VF03 e selecionar o ícone “liberar contabilidade” (bandeira verde).</p>\n        "], ["Transações úteis SAP", "\n            <ul>\n                <li>MM03 – Exibir Mestre de Materiais</li>\n                <li>XK03 – Exibir Mestre de Fornecedor</li>\n                <li>VA01 – Criar ordem de cliente</li>\n                <li>VA03 – Exibir ordem cliente</li>\n                <li>VF01 – Criar documento de faturamento</li>\n                <li>VF02 – Alterar documento de faturamento</li>\n                <li>VF03 – Exibir documento de faturamento</li>\n                <li>VF05 – Lista documentos de faturamento</li>\n                <li>VF11 – Estornar documento de faturamento</li>\n                <li>FBRA – Estorno de partidas compensadas</li>\n                <li>FB08 – Estornar documento</li>\n            </ul>\n        "], ["Criação/modificação de Fornecedor ou Material no SAP", "<p>Deverá entrar em contato com a equipe de <b>Suprimentos</b>.</p>"]]};
+        let currentArea = null;
+        let areasDiv = document.getElementById("areas");
+        let perguntasDiv = document.getElementById("perguntas");
 
+        // Função para criar os botões de área
+        function createAreaButtons() {
+            for (let area in faq) {
+                let btn = document.createElement("button");
+                btn.className = "area-btn";
+                btn.innerText = area;
+                btn.dataset.area = area;
+                btn.onclick = function() {
+                    document.querySelectorAll('.area-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentArea = area;
+                    perguntasDiv.innerHTML = "";
+                    faq[area].forEach(function(qr) {
+                        let pbtn = document.createElement("button");
+                        pbtn.className = "question-btn";
+                        pbtn.innerText = qr[0];
+                        pbtn.onclick = function() { addMessage(qr[0], qr[1]); };
+                        perguntasDiv.appendChild(pbtn);
+                    });
+                };
+                areasDiv.appendChild(btn);
+            }
+        }
 
+        function addMessage(pergunta, resposta) {
+            let chat = document.getElementById("chat");
+            if (chat.querySelector('.placeholder-text')) {
+                chat.innerHTML = '';
+            }
+
+            let userMsg = document.createElement("div");
+            userMsg.className = "message user";
+            userMsg.innerText = pergunta;
+            chat.appendChild(userMsg);
+            chat.scrollTop = chat.scrollHeight;
+
+            setTimeout(function() {
+                let botMsg = document.createElement("div");
+                botMsg.className = "message bot";
+                botMsg.innerHTML = resposta;
+                chat.appendChild(botMsg);
+                chat.scrollTop = chat.scrollHeight;
+            }, 500);
+        }
+
+        // --- INICIALIZAÇÃO ---
+        createAreaButtons();
+        // Simula o clique no primeiro botão de área para carregar o conteúdo inicial
+        document.querySelector('.area-btn').click();
+
+    </script>
+</body>
+</html>
